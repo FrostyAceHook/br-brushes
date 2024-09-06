@@ -17,6 +17,7 @@ def createInputs(self):
         {"Hollow radius:": (0.0, 0.0, 256.0)},
         {"": "Direction:"}, # weird setup to do a label.
         OrderedDict([("Inwards:", True), ("Outwards:", True)]),
+        {"Minimum Spacing": (1, 0, 100)},
     )
 
 
@@ -136,7 +137,7 @@ def apply(self, op, point):
 
         # Only modify the matching blocks, if requested.
         if replace:
-            mask = ((ids == rid) & (datas == rdata))
+            mask &= ((ids == rid) & (datas == rdata))
 
 
         ids[mask] = bid
